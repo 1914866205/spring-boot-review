@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8029e8f4-b7ae-4a35-a702-5642f6246461" name="Default Changelist" comment="" />
+    <list default="true" id="8029e8f4-b7ae-4a35-a702-5642f6246461" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/spring-boot-start/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-start/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589203041068</updated>
-      <workItem from="1589203042346" duration="1343000" />
+      <workItem from="1589203042346" duration="1422000" />
     </task>
     <servers />
   </component>
