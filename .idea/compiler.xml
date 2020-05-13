@@ -7,14 +7,26 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-boot-start" />
+        <module name="spring-boot-jpaadvance" />
+        <module name="spring-boot-jpa" />
+        <module name="spring-boot-configuration" />
+        <module name="spring-boot-application" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="spring-boot-application" target="1.8" />
+      <module name="spring-boot-configuration" target="1.8" />
+      <module name="spring-boot-jpa" target="1.8" />
+      <module name="spring-boot-jpaadvance" target="1.8" />
       <module name="spring-boot-start" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring-boot-application" options="-parameters" />
+      <module name="spring-boot-configuration" options="-parameters" />
+      <module name="spring-boot-jpa" options="-parameters" />
+      <module name="spring-boot-jpaadvance" options="-parameters" />
       <module name="spring-boot-start" options="-parameters" />
     </option>
   </component>
