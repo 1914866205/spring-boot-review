@@ -25,6 +25,15 @@ import java.util.Optional;
 public interface StudentService {
 
     /**
+     * 根据班级id查询所有班级学生
+     *
+     * @param clazzId
+     * @return
+     */
+    List<Student> findStudentsByClazzId(Integer clazzId);
+
+
+    /**
      * 查找所有学生信息
      *
      * @return

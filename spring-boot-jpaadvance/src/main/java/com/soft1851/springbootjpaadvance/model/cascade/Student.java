@@ -1,5 +1,6 @@
 package com.soft1851.springbootjpaadvance.model.cascade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @Description TODO
@@ -37,5 +39,10 @@ public class Student {
     private String hometown;
     @Column(name="birthday",nullable = true)
     private LocalDateTime birthday;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "student_course",joinColumns = @JoinColumn(name = "student_id"),
+               inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courseList;
 
 }

@@ -165,6 +165,7 @@ class StudentServiceTest {
         Sort sort = Sort.by(Sort.Direction.DESC, "studentId");
         Pageable pageable = PageRequest.of(page, size, sort);
         Slice<Student> students = studentService.queryFirst3ByStudentName("陶然然", pageable);
+            log.info("students>>>>>>>>>>>>>>>>>>{}", students);
         students.forEach(student -> {
             log.info("queryFirst3ByStudentName>>>>>>>>>>>>>>>>>>{}", student);
         });
@@ -285,12 +286,13 @@ class StudentServiceTest {
     }
 
 //    @Test
-
-    @Test
-    void name() {
-
-    }
 //    public void findClassNameByStudentId(){
 //        log.info("findClassNameByStudentId>>>>>>>>>>>>>>>>>>{}", studentService.findClassNameByStudentId(2));
 //    }
+
+    @Test
+    public void findStudentsByClazzId(){
+        List<Student> students = studentService.findStudentsByClazzId(1);
+        students.forEach(System.out::println);
+    }
 }

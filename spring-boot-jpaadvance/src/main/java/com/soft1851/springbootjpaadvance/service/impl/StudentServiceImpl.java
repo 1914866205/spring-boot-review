@@ -3,6 +3,7 @@ package com.soft1851.springbootjpaadvance.service.impl;
 import com.soft1851.springbootjpaadvance.dao.StudentRepository;
 import com.soft1851.springbootjpaadvance.model.cascade.Student;
 import com.soft1851.springbootjpaadvance.service.StudentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.Optional;
  * @Version 1.0
  **/
 @Service
+@Slf4j
 public class StudentServiceImpl implements StudentService {
     @Resource
     private StudentRepository studentRepository;
@@ -130,6 +132,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Page<Student> queryFirst3ByStudentName(String name, Pageable pageable) {
+        log.info("name>>>>>>>>>>>>>>>>>>{}", name);
         return studentRepository.queryFirst3ByStudentName(name, pageable);
     }
 
@@ -167,4 +170,9 @@ public class StudentServiceImpl implements StudentService {
 //    public String findClassNameByStudentId(Integer studentId) {
 //        return studentRepository.findClassNameByStudentId(studentId);
 //    }
+
+    @Override
+    public List<Student> findStudentsByClazzId(Integer clazzId) {
+        return studentRepository.findStudentsByClazzId(clazzId);
+    }
 }

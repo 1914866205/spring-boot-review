@@ -21,6 +21,17 @@ import java.util.List;
  * @Version 1.0
  **/
 public interface StudentRepository extends JpaRepository<Student, Integer> , JpaSpecificationExecutor<Student> {
+
+
+    /**
+     * 根据班级id查询所有班级学生
+     *
+     * @param clazzId
+     * @return
+     */
+    @Query(value = "select student_id,student_name,birthday,hometown from student where clazz_id=?1", nativeQuery = true)
+    List<Student> findStudentsByClazzId(Integer clazzId);
+
     /**
      * 根据名字模糊查询，按照id降序
      *
