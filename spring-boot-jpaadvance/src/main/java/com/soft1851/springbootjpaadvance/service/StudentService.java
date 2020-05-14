@@ -3,10 +3,13 @@ package com.soft1851.springbootjpaadvance.service;
 import com.soft1851.springbootjpaadvance.model.cascade.Student;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.RuntimeErrorException;
@@ -23,6 +26,7 @@ public interface StudentService {
 
     /**
      * 查找所有学生信息
+     *
      * @return
      */
     List<Student> findAll();
@@ -36,6 +40,7 @@ public interface StudentService {
 
     /**
      * 添加学生
+     *
      * @param student
      */
     void save(Student student);
@@ -43,6 +48,7 @@ public interface StudentService {
 
     /**
      * 删除学生
+     *
      * @param student
      * @return
      */
@@ -51,6 +57,7 @@ public interface StudentService {
 
     /**
      * 查询学生总数
+     *
      * @return
      */
     long count();
@@ -58,6 +65,7 @@ public interface StudentService {
 
     /**
      * 判断该id是否存在
+     *
      * @param id
      * @return
      */
@@ -71,8 +79,10 @@ public interface StudentService {
      * @return
      */
     Optional<Student> findOne(Student student);
+
     /**
      * 根据实例 查找一批对象
+     *
      * @param student
      * @return
      */
@@ -80,6 +90,7 @@ public interface StudentService {
 
     /**
      * 根据实例查找一批对象，且排序
+     *
      * @param student
      * @param sort
      * @return
@@ -88,6 +99,7 @@ public interface StudentService {
 
     /**
      * 根据实例查找一批对象，且排序分页
+     *
      * @param student
      * @param pageable
      * @return
@@ -97,6 +109,7 @@ public interface StudentService {
 
     /**
      * 根据实例符合条件的数量
+     *
      * @param student
      * @return
      */
@@ -104,6 +117,7 @@ public interface StudentService {
 
     /**
      * 根据实例判断是否存在
+     *
      * @param student
      * @return
      */
@@ -111,6 +125,7 @@ public interface StudentService {
 
     /**
      * 批量保存
+     *
      * @param student
      * @return
      */
@@ -119,6 +134,7 @@ public interface StudentService {
 
     /**
      * 根据名字模糊查询，按照id降序
+     *
      * @param name
      * @return
      */
@@ -131,8 +147,10 @@ public interface StudentService {
      * @return
      */
     Student findByIdhhh(Integer id);
+
     /**
      * 修改
+     *
      * @param name
      * @param id
      * @return
@@ -143,6 +161,61 @@ public interface StudentService {
 
 
     Student selectById(Integer id);
+
+    /**
+     * 分页
+     *
+     * @param pageable
+     * @return
+     */
+    Page<Student> findAll(Pageable pageable);
+
+
+    /**
+     * 分页
+     *
+     * @param name
+     * @param pageable
+     * @return
+     */
+    Page<Student> findByName(String name, Pageable pageable);
+
+    Slice<Student> findStudentByStudentName(String name, Pageable pageable);
+
+    /**
+     * 查询前三个元素
+     *
+     * @param name
+     * @param pageable
+     * @return
+     */
+    Page<Student> queryFirst3ByStudentName(String name, Pageable pageable);
+
+    Slice<Student> findTop3ByStudentName(String name, Pageable pageable);
+
+
+    //根据Specification 条件查询单个对象，注意的是，如果条件能查出来多个会报错
+    Optional<Student> findOne(@Nullable Specification<Student> spec);
+
+    //根据Specification 条件查询List结果
+    List<Student> findAll(@Nullable Specification<Student> spec);
+
+    //根据 Specification 条件，分页查询
+    Page<Student> findAll(@Nullable Specification<Student> spec, Pageable pageable);
+
+    //根据 Specification 条件，带排序的查询结果
+    List<Student> findAll(@Nullable Specification<Student> spec, Sort sort);
+
+    //根据 Specification 条件，查询数量
+    long count(@Nullable Specification<Student> spec);
+
+    /**
+     * 根据学号查询班级名称
+     * @param studentId
+     * @return
+     */
+//    String findClassNameByStudentId(Integer studentId);
+
 
 
 }

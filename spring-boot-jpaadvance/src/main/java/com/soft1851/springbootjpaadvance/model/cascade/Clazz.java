@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,13 +23,13 @@ import java.util.List;
 public class Clazz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clazz_id",length = 32,nullable = false)
     private Integer clazzId;
-    @Column(length = 32, nullable = false)
+
+    @Column(name = "clazz_name",length = 32,nullable = false)
     private String clazzName;
-    @Column(length = 32,nullable = false)
-    private Integer teacherId;
-    @Transient
-    private Teacher teacher;
-    @Transient
-    private List<Student> students;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "clazz_id")
+    private List<Student> students = new ArrayList<>();
 }

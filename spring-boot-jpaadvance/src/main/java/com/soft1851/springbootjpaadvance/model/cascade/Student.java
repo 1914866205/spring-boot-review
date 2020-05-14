@@ -31,14 +31,11 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="student_id")
     private Integer studentId;
-    @Column(name="clazz_id",nullable = false)
-    private Integer clazzId;
     @Column(name="student_name",nullable = false,length = 32)
     private String studentName;
     @Column(name="hometown",nullable = true)
     private String hometown;
     @Column(name="birthday",nullable = true)
     private LocalDateTime birthday;
-    @Transient
-    private Clazz clazz;
+
 }

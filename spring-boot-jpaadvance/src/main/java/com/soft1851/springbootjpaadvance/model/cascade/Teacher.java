@@ -22,10 +22,11 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer teacherId;
+
     @Column(name="teacher_name",length = 32, nullable = false)
     private String teacherName;
-    @Column(name="clazz_id")
-    private Integer clazzId;
-    @Transient
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clazz_id",referencedColumnName = "clazz_id")
     private Clazz clazz;
 }
