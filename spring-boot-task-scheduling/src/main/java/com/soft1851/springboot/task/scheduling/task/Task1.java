@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  **/
 //@Component
+//注：如果这个类不加@EnableScheduling 注解，就需要在启动主类加上
 public class Task1 {
     private int count = 0;
 

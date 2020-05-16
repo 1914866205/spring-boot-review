@@ -15,7 +15,9 @@ import java.time.format.DateTimeFormatter;
  * @Date 2020/5/14 19:38
  * @Version 1.0
  **/
-@Component
+
+//注：如果这个类不加@EnableScheduling 注解，就需要在启动主类加上
+//@Component
 public class Scheduler2Task {
     @Resource
     private SendBirthdayCardService sendBirthdayCardService;
@@ -53,8 +55,8 @@ public class Scheduler2Task {
 //    public void reportCurrentTime4(){
 //        System.out.println("现在时间4：" + dft.format(LocalDateTime.now()));
 //    }
-    @Scheduled(cron = "0 07 23 * * ?")
-    public void reportCurrentTime5() throws MessagingException {
-        sendBirthdayCardService.SendBirthdayCard();
-    }
+//    @Scheduled(cron = "0 48 10 * * ?")
+//    public void reportCurrentTime5() throws MessagingException {
+//        sendBirthdayCardService.SendBirthdayCard();
+//    }
 }

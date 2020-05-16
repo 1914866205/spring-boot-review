@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: spring-boot-jpa
+    name: spring-boot-task-schedule
   jpa:
     database: mysql
     show-sql: true
@@ -25,7 +25,38 @@ spring:
       pool-name: MyHikariCP
       maximum-pool-size: 15
 
-# 邮箱主机地址
+  quartz:
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clustereScheduler #调度器的实例名
+            instanceInd: AUTO #调度器编号自动生成
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX #作业存储类型
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: qrtz_ #数据库表名前缀
+            isClusterex: true # 开启分布式部署
+            clusterCheckinInterval: 10000 # 分布式节点有效性检查时间间隔，单位：秒
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool #自带的线程池实现类
+            threadCount: 10 #开启10个线程
+            threadPriority: 5 #工作线程的优先级
+            threadsInheritContextClassLocaderOfInitializingThread: true
+    # 数据存储方式
+    job-store-type: jdbc
+
+
+
+
+
+
+
+
+
+
+  # 邮箱主机地址
   mail:
     host: smtp.qq.com
   # 端口
