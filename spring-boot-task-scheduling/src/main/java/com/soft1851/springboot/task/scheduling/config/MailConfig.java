@@ -1,9 +1,8 @@
-package com.soft1851.springboot.task.scheduling.Config;
+package com.soft1851.springboot.task.scheduling.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 /**
@@ -12,7 +11,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
  * @Date 2020/5/15 14:14
  * @Version 1.0
  **/
-@Configuration
+//@Configuration
 @Slf4j
 public class MailConfig {
     @Value("${spring.mail.host}")

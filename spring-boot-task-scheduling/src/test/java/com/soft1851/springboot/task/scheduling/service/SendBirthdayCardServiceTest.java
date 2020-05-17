@@ -34,7 +34,7 @@ class SendBirthdayCardServiceTest {
     @Test
     void insertStudent() {
         //插入一条学生数据
-        Student student = Student.builder().studentName("涛涛").email("1914866205@qq.com").hometown("江苏徐州").birthday(LocalDateTime.of(1999, 5, 27, 7, 20)).build();
+        Student student = Student.builder().studentName("测试加密2").email("1914866205@qq.com").hometown("江苏徐州").birthday(LocalDateTime.of(1999, 5, 27, 7, 20)).build();
         studentRepository.save(student);
     }
 
