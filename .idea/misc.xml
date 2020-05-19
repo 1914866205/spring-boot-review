@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/spring-boot-jpaadvance/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-task-scheduling/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-rabbitmq/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-quartz/pom.xml" />
       </list>
     </option>
   </component>

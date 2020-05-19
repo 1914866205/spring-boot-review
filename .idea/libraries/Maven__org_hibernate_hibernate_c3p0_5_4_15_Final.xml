@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.hibernate:hibernate-c3p0:5.4.15.Final">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../niitstudy/TheFirstWeek/respoity/org/hibernate/hibernate-c3p0/5.4.15.Final/hibernate-c3p0-5.4.15.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../niitstudy/TheFirstWeek/respoity/org/hibernate/hibernate-c3p0/5.4.15.Final/hibernate-c3p0-5.4.15.Final-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../niitstudy/TheFirstWeek/respoity/org/hibernate/hibernate-c3p0/5.4.15.Final/hibernate-c3p0-5.4.15.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,20 @@
+quartz:
+  enabled: true
+server:
+  port: 8080
+spring:
+  application:
+    name: Spring-Quartz-Scheduler
+  datasource:
+    url: jdbc:mysql://localhost:3306/test1?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #jpa 配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
