@@ -9,6 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/spring-boot-quartz/spring-boot-quartz.iml" filepath="$PROJECT_DIR$/spring-boot-quartz/spring-boot-quartz.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-rabbitmq/spring-boot-rabbitmq.iml" filepath="$PROJECT_DIR$/spring-boot-rabbitmq/spring-boot-rabbitmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring-boot-review.iml" filepath="$PROJECT_DIR$/.idea/spring-boot-review.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-shiro/spring-boot-shiro.iml" filepath="$PROJECT_DIR$/spring-boot-shiro/spring-boot-shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-shiroexample/spring-boot-shiroexample.iml" filepath="$PROJECT_DIR$/spring-boot-shiroexample/spring-boot-shiroexample.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-start/spring-boot-start.iml" filepath="$PROJECT_DIR$/spring-boot-start/spring-boot-start.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-task-scheduling/spring-boot-task-scheduling.iml" filepath="$PROJECT_DIR$/spring-boot-task-scheduling/spring-boot-task-scheduling.iml" />
     </modules>

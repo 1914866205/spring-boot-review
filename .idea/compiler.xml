@@ -6,14 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="spring-boot-start" />
         <module name="spring-boot-configuration" />
+        <module name="spring-boot-shiroexample" />
         <module name="spring-boot-jpa" />
         <module name="spring-boot-rabbitmq" />
         <module name="spring-boot-application" />
         <module name="spring-boot-jpaadvance" />
         <module name="spring-boot-quartz" />
         <module name="spring-boot-task-scheduling" />
-        <module name="spring-boot-start" />
+        <module name="spring-boot-shiro" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +25,8 @@
       <module name="spring-boot-jpaadvance" target="1.8" />
       <module name="spring-boot-quartz" target="1.8" />
       <module name="spring-boot-rabbitmq" target="1.8" />
+      <module name="spring-boot-shiro" target="1.8" />
+      <module name="spring-boot-shiroexample" target="1.8" />
       <module name="spring-boot-start" target="1.8" />
       <module name="spring-boot-task-scheduling" target="1.8" />
     </bytecodeTargetLevel>
@@ -35,6 +39,7 @@
       <module name="spring-boot-jpaadvance" options="-parameters" />
       <module name="spring-boot-quartz" options="-parameters" />
       <module name="spring-boot-rabbitmq" options="-parameters" />
+      <module name="spring-boot-shiro" options="-parameters" />
       <module name="spring-boot-start" options="-parameters" />
       <module name="spring-boot-task-scheduling" options="-parameters" />
     </option>
