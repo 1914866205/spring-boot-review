@@ -7,10 +7,12 @@ import com.soft1851.springboot.quartz.service.DynamicJobService;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.Objects;
@@ -32,6 +34,8 @@ public class DynamicJobController {
     private DynamicJobService dynamicJobService;
     @Resource
     private JobEntityRepository jobEntityRepository;
+    @Resource
+    private RabbitTemplate rabbitTemplate;
 
     /**
      * 初始化所有的Job
@@ -134,44 +138,56 @@ public class DynamicJobController {
      */
     @PostMapping("/modify")
     public String modifyJob(@RequestBody @Validated ModifyCronDto dto) {
-        if (!CronExpression.isValidExpression(dto.getCron())) {
-            return "cron is invalid";
-        }
-        synchronized (log) {
-            //获取作业对象
-            JobEntity job = dynamicJobService.getJobEntityById(dto.getId());
-            if ("OPEN".equals(job.getStatus())) {
-                try {
-                    //获取JobKey
-                    JobKey jobKey = dynamicJobService.getJobKey(job);
-                    System.out.println("jobkey"+jobKey);
-                    TriggerKey triggerKey = new TriggerKey(jobKey.getName(),jobKey.getGroup());
-                    System.out.println("triggerKey"+triggerKey);
-                    Scheduler scheduler = schedulerFactoryBean.getScheduler();
-
-
-                    CronTrigger cronTrigger = (CronTrigger) scheduler.getTrigger(triggerKey);
-                    System.out.println("cronTrigger"+cronTrigger);
-                    String oldCron = cronTrigger.getCronExpression();
-                    if (!oldCron.equalsIgnoreCase(dto.getCron())) {
-                        job.setCron(dto.getCron());
-                        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(dto.getCron());
-                        CronTrigger trigger = TriggerBuilder.newTrigger()
-                                .withIdentity(jobKey.getName(), jobKey.getGroup())
-                                .withSchedule(cronScheduleBuilder)
-                                .usingJobData(dynamicJobService.getJobDataMap(job))
-                                .build();
-                        scheduler.rescheduleJob(triggerKey, trigger);
-                        jobEntityRepository.save(job);
-                    }
-                } catch (SchedulerException e) {
-                    log.error("printStackTrace", e);
-                }
-            } else {
-                log.info("Job jump name : {} , Because {} status is {}", job.getName(), job.getName(), job.getStatus());
-                return "modify failure ,because the job is closed";
-            }
-        }
+        rabbitTemplate.convertAndSend("exchange.fanout",null, dto);
         return "modify success";
     }
+
+//    /**
+//     * 修改某个Job执行的Cron
+//     *
+//     * @param dto
+//     * @return
+//     */
+//    @PostMapping("/modify")
+//    public String modifyJob(@RequestBody @Validated ModifyCronDto dto) {
+//        if (!CronExpression.isValidExpression(dto.getCron())) {
+//            return "cron is invalid";
+//        }
+//        synchronized (log) {
+//            //获取作业对象
+//            JobEntity job = dynamicJobService.getJobEntityById(dto.getId());
+//            if ("OPEN".equals(job.getStatus())) {
+//                try {
+//                    //获取JobKey
+//                    JobKey jobKey = dynamicJobService.getJobKey(job);
+//                    System.out.println("jobkey"+jobKey);
+//                    TriggerKey triggerKey = new TriggerKey(jobKey.getName(),jobKey.getGroup());
+//                    System.out.println("triggerKey"+triggerKey);
+//                    Scheduler scheduler = schedulerFactoryBean.getScheduler();
+//
+//
+//                    CronTrigger cronTrigger = (CronTrigger) scheduler.getTrigger(triggerKey);
+//                    System.out.println("cronTrigger"+cronTrigger);
+//                    String oldCron = cronTrigger.getCronExpression();
+//                    if (!oldCron.equalsIgnoreCase(dto.getCron())) {
+//                        job.setCron(dto.getCron());
+//                        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(dto.getCron());
+//                        CronTrigger trigger = TriggerBuilder.newTrigger()
+//                                .withIdentity(jobKey.getName(), jobKey.getGroup())
+//                                .withSchedule(cronScheduleBuilder)
+//                                .usingJobData(dynamicJobService.getJobDataMap(job))
+//                                .build();
+//                        scheduler.rescheduleJob(triggerKey, trigger);
+//                        jobEntityRepository.save(job);
+//                    }
+//                } catch (SchedulerException e) {
+//                    log.error("printStackTrace", e);
+//                }
+//            } else {
+//                log.info("Job jump name : {} , Because {} status is {}", job.getName(), job.getName(), job.getStatus());
+//                return "modify failure ,because the job is closed";
+//            }
+//        }
+//        return "modify success";
+//    }
 }

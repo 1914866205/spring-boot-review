@@ -2642,3 +2642,6 @@ java.lang.NullPointerException: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
 
+2020-05-19 14:36:26.218 ERROR 5900 --- [AMQP Connection 127.0.0.1:5672] o.s.a.r.c.CachingConnectionFactory       CachingConnectionFactory.java:1566: Channel shutdown: channel error; protocol method: #method<channel.close>(reply-code=404, reply-text=NOT_FOUND - no exchange 'soft1851.news' in vhost '/', class-id=60, method-id=40)
+2020-05-19 14:43:17.912 ERROR 13468 --- [AMQP Connection 127.0.0.1:5672] o.s.a.r.c.CachingConnectionFactory       CachingConnectionFactory.java:1566: Channel shutdown: channel error; protocol method: #method<channel.close>(reply-code=404, reply-text=NOT_FOUND - no exchange 'soft1851.news' in vhost '/', class-id=60, method-id=40)
+2020-05-19 14:46:40.811 ERROR 22968 --- [AMQP Connection 127.0.0.1:5672] o.s.a.r.c.CachingConnectionFactory       CachingConnectionFactory.java:1566: Channel shutdown: channel error; protocol method: #method<channel.close>(reply-code=404, reply-text=NOT_FOUND - no exchange 'soft1851.news' in vhost '/', class-id=60, method-id=40)
