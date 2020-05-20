@@ -1,5 +1,6 @@
 package com.soft1851.springboot.shiro.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,7 +24,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         //设置安全管理器
         bean.setSecurityManager(defaultWebSecurityManager);
-       //添加shiro的内置过滤器
+        //添加shiro的内置过滤器
         /*
          *  anno: 无需认证就可以访问
          *  authc: 必须认证了才能访问
@@ -35,13 +36,18 @@ public class ShiroConfig {
         Map<String, String> filterMap = new LinkedHashMap<>();
 //        filterMap.put("/user/add", "authc");
 //        filterMap.put("/user/update", "authc");
+        //授权   401 未授权
+        filterMap.put("/user/add", "perms[user:add]");
+        filterMap.put("/user/update", "perms[user:update]");
         filterMap.put("/user/*", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登录的请求
         bean.setLoginUrl("/toLogin");
-
+        //设置未授权的请求
+        bean.setUnauthorizedUrl("/noauth");
         return bean;
     }
+
     //DefaultWebSecurityManager   接管对象  2
     //通过@Qualifier制定方法名，把参数和下面的方法绑定
     @Bean(name = "securityManager")
@@ -58,5 +64,12 @@ public class ShiroConfig {
     @Bean
     public UserRealm userRealm() {
         return new UserRealm();
+    }
+
+
+    //整合ShiroDialect: 用来整合  shiro thymeleaf
+    @Bean
+    public ShiroDialect getShiroDialect(){
+        return new ShiroDialect();
     }
 }
